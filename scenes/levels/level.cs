@@ -9,4 +9,10 @@ public partial class level : Node2D
 		Sprite2D car = (Sprite2D)GetNode("Car");
 		car.RotationDegrees = 90;
 	}
+
+	public override void _Process(double delta)
+	{
+		Input.IsActionPressed("left");
+
+	}
 }

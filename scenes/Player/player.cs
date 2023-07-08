@@ -3,8 +3,10 @@ using System;
 
 public partial class player : CharacterBody2D
 {
-	int movementSpeed = 1200;
+	int movementSpeed = 500;
 	Vector2 playerPos = new Vector2();
+
+	bool can_rotate_car = true;
 
 	public override void _Ready(){
 	}
@@ -14,23 +16,34 @@ public partial class player : CharacterBody2D
 	{
 		// input
 		var carNode = GetNode<Sprite2D>("../Car");
+		var rotateCarTimer = GetNode<Timer>("rotateCarTimer");
 
 		// arrow shooting input
-		if (Input.IsActionJustPressed("primary action")){
+		if (Input.IsActionJustPressed("primary action") && can_rotate_car){
 			// for the purpose of practise, access car node from this node
 			// and the primary action is to rotate the car 90 degrees clockwsie. 
 			carNode.RotationDegrees += 90;
+
+			can_rotate_car = false;
+			rotateCarTimer.Start();
+		}
+
+		if (Input.IsActionJustPressed("secondary action")){
+			carNode.RotationDegrees += 180;
 		}
 	}
 
 	public override void _PhysicsProcess(double delta){
 		var direction = Input.GetVector("left", "right", "up", "down");
-		// Position += direction * movementSpeed * delta;
-		// playerPos.X += direction.X * movementSpeed * (float)delta;
-		// playerPos.Y += direction.Y * movementSpeed * (float)delta;
-		Velocity = direction * movementSpeed * (float)delta;
+		// Velocity automatically includes the effect of delta
+		// so no need to repeat the process
+		// which will slow you down for the times of framerate
+		Velocity = direction * movementSpeed;
 
-		GD.Print(Velocity);
 		MoveAndSlide();
+	}
+
+	private void _on_timer_timeout(){
+		can_rotate_car = true;
 	}
 }

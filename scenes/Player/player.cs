@@ -8,6 +8,11 @@ public partial class player : CharacterBody2D
 
 	bool can_rotate_car = true;
 
+	[Signal]
+	public delegate void primaryActionEventHandler();
+	[Signal]
+	public delegate void secondaryActionEventHandler();
+
 	public override void _Ready(){
 	}
 
@@ -26,10 +31,14 @@ public partial class player : CharacterBody2D
 
 			can_rotate_car = false;
 			rotateCarTimer.Start();
+
+			EmitSignal(SignalName.primaryAction);
 		}
 
 		if (Input.IsActionJustPressed("secondary action")){
 			carNode.RotationDegrees += 180;
+
+			EmitSignal(SignalName.secondaryAction);
 		}
 	}
 

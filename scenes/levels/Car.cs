@@ -10,7 +10,7 @@ public partial class Car : Sprite2D
 		Vector2 nodeSize = GetScaledSpriteSize(GetRect().Size);
 		Vector2 centeredPosition = (screenSize / 2);
 		Position = centeredPosition;
-		GD.Print(Position);
+		// GD.Print(Position);
 	}
 
 	public override void _Process(double delta){

@@ -8,12 +8,15 @@ public partial class player : CharacterBody2D
 
 	bool can_rotate_car = true;
 
+	private Node2D _arrowStartPosition;
+
 	[Signal]
 	public delegate void primaryActionEventHandler();
 	[Signal]
 	public delegate void secondaryActionEventHandler();
 
 	public override void _Ready(){
+		_arrowStartPosition = (Node2D)GetNode("ArrowStartPosition");
 	}
 
 
@@ -31,6 +34,15 @@ public partial class player : CharacterBody2D
 
 			can_rotate_car = false;
 			rotateCarTimer.Start();
+
+			// randomly selected a marker2D for the laser start point. 
+			// emit the position we selected. 
+			var arrow_markers = _arrowStartPosition.GetChildren();
+
+			Random arrowRandomMarker = new Random();
+			// a randomed reference of that Node;
+			Node selected_marker = arrow_markers[arrowRandomMarker.Next(0, 2)];
+			// Vector2 selectedMarkerPos = selected_marker.Prosition;
 
 			EmitSignal(SignalName.primaryAction);
 		}

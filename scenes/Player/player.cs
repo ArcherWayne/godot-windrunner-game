@@ -26,6 +26,9 @@ public partial class player : CharacterBody2D
 		var carNode = GetNode<Sprite2D>("../Car");
 		var rotateCarTimer = GetNode<Timer>("rotateCarTimer");
 
+		// rotate player
+		LookAt(GetGlobalMousePosition());
+
 		// arrow shooting input
 		if (Input.IsActionJustPressed("primary action") && can_rotate_car){
 			// for the purpose of practise, access car node from this node

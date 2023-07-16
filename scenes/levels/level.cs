@@ -39,6 +39,7 @@ public partial class level : Node2D
 		GD.Print("custom_signal_secondary_action");
 		RigidBody2D grenade = (RigidBody2D)grenade_scene.Instantiate();
 		grenade.Position = _playNode.Position;
+		grenade.LinearVelocity = Vector2.Up * 500;
 		_projectile.AddChild(grenade);
 	}
 

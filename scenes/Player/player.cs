@@ -13,7 +13,7 @@ public partial class player : CharacterBody2D
 	[Signal]
 	public delegate void primaryActionEventHandler();
 	[Signal]
-	public delegate void secondaryActionEventHandler();
+	public delegate void secondaryActionEventHandler(Vector2 direction);
 
 	public override void _Ready(){
 		_arrowStartPosition = (Node2D)GetNode("ArrowStartPosition");
@@ -52,8 +52,9 @@ public partial class player : CharacterBody2D
 
 		if (Input.IsActionJustPressed("secondary action")){
 			carNode.RotationDegrees += 180;
+			Vector2 direction = (GetGlobalMousePosition() - Position).Normalized();
 
-			EmitSignal(SignalName.secondaryAction);
+			EmitSignal(SignalName.secondaryAction, direction);
 		}
 	}
 

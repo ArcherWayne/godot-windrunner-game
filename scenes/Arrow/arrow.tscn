@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://87m316yur5qc"]
+
+[ext_resource type="Script" path="res://scenes/Arrow/arrow.cs" id="1_05lkg"]
+[ext_resource type="Texture2D" uid="uid://dha0mm4muufpp" path="res://assets/graphics/projectiles/arrow.png" id="1_8vmlw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4820"]
+radius = 4.0
+height = 70.0
+
+[node name="Arrow" type="Area2D"]
+script = ExtResource("1_05lkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_8vmlw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_y4820")

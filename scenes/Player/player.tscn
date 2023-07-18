@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2kjblw5go1mu"]
+
+[ext_resource type="Texture2D" uid="uid://80hsuna1xxf8" path="res://assets/graphics/windranger/idle_right/0.png" id="1_kuetl"]
+[ext_resource type="Script" path="res://scenes/Player/player.cs" id="1_q2dgu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fpgv"]
+radius = 4.5
+height = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_q2dgu")
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_kuetl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
+shape = SubResource("CapsuleShape2D_7fpgv")
+
+[node name="rotateCarTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ArrowStartPosition" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ArrowStartPosition"]
+position = Vector2(3.5, 2.5)
+
+[node name="Marker2D2" type="Marker2D" parent="ArrowStartPosition"]
+position = Vector2(5.5, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="ArrowStartPosition"]
+position = Vector2(2, 0.5)
+
+[connection signal="timeout" from="rotateCarTimer" to="." method="_on_timer_timeout"]

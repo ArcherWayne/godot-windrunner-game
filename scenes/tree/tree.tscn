@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmsbujk267dwd"]
+
+[ext_resource type="Script" path="res://scenes/tree/tree.cs" id="1_tpsa5"]
+[ext_resource type="Texture2D" uid="uid://crjh5njkgf8av" path="res://assets/graphics/map/tree.png" id="1_xys2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwu6"]
+size = Vector2(74, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jvkfp"]
+radius = 42.0119
+
+[node name="tree" type="StaticBody2D"]
+script = ExtResource("1_tpsa5")
+
+[node name="treeSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_xys2h")
+
+[node name="treeShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_ggwu6")
+
+[node name="testCustomSignal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testCustomSignal"]
+position = Vector2(-3, 81)
+shape = SubResource("CircleShape2D_jvkfp")

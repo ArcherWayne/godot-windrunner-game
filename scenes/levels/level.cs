@@ -21,6 +21,7 @@ public partial class level : Node2D
 
 		_playNode = (CharacterBody2D)GetNode("Player");
 		_projectile = (Node2D)GetNode("Projectiles");
+
 	}
 
 	public override void _Process(double delta)
@@ -28,17 +29,17 @@ public partial class level : Node2D
 	}
 
 
-	public void _on_player_primary_action(){
-		GD.Print("custom_signal_primary_action");
-		Area2D arrow = (Area2D)arrow_scene.Instantiate();
-		arrow.Position = _playNode.Position;
+	public void _on_player_primary_action(Vector2 direction, Vector2 position){
+		RigidBody2D arrow = (RigidBody2D)arrow_scene.Instantiate();
+		arrow.Position = position;
+		arrow.LinearVelocity = direction * 600;
+		arrow.Rotation = direction.Angle();
 		_projectile.AddChild(arrow);
 	}
 
-	public void _on_player_secondary_action(Vector2 direction){
-		GD.Print("custom_signal_secondary_action");
+	public void _on_player_secondary_action(Vector2 direction, Vector2 position){
 		RigidBody2D grenade = (RigidBody2D)grenade_scene.Instantiate();
-		grenade.Position = _playNode.Position;
+		grenade.Position = position;
 		grenade.LinearVelocity = direction * 500;
 		_projectile.AddChild(grenade);
 	}

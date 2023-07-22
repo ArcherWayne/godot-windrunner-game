@@ -20,18 +20,22 @@ position = Vector2(1.5, 0)
 shape = SubResource("CapsuleShape2D_7fpgv")
 
 [node name="rotateCarTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.05
 one_shot = true
 
 [node name="ArrowStartPosition" type="Node2D" parent="."]
+position = Vector2(28.5, -1.5)
 
-[node name="Marker2D" type="Marker2D" parent="ArrowStartPosition"]
+[node name="Marker2D0" type="Marker2D" parent="ArrowStartPosition"]
 position = Vector2(3.5, 2.5)
 
-[node name="Marker2D2" type="Marker2D" parent="ArrowStartPosition"]
+[node name="Marker2D1" type="Marker2D" parent="ArrowStartPosition"]
 position = Vector2(5.5, 0)
 
-[node name="Marker2D3" type="Marker2D" parent="ArrowStartPosition"]
+[node name="Marker2D2" type="Marker2D" parent="ArrowStartPosition"]
 position = Vector2(2, 0.5)
+
+[node name="GrenadeStartPosition" type="Node2D" parent="."]
+position = Vector2(8.5, 0)
 
 [connection signal="timeout" from="rotateCarTimer" to="." method="_on_timer_timeout"]

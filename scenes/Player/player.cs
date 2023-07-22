@@ -9,14 +9,17 @@ public partial class player : CharacterBody2D
 	bool can_rotate_car = true;
 
 	private Node2D _arrowStartPosition;
+	private Node2D GrenadeStartPosition;
+	private Marker2D randomArrowStartPosition;
 
 	[Signal]
-	public delegate void primaryActionEventHandler();
+	public delegate void primaryActionEventHandler(Vector2 direction, Vector2 position);
 	[Signal]
-	public delegate void secondaryActionEventHandler(Vector2 direction);
+	public delegate void secondaryActionEventHandler(Vector2 direction, Vector2 position);
 
 	public override void _Ready(){
 		_arrowStartPosition = (Node2D)GetNode("ArrowStartPosition");
+		GrenadeStartPosition = (Node2D)GetNode("GrenadeStartPosition");
 	}
 
 
@@ -40,21 +43,23 @@ public partial class player : CharacterBody2D
 
 			// randomly selected a marker2D for the laser start point. 
 			// emit the position we selected. 
-			var arrow_markers = _arrowStartPosition.GetChildren();
 
 			Random arrowRandomMarker = new Random();
-			// a randomed reference of that Node;
-			Node selected_marker = arrow_markers[arrowRandomMarker.Next(0, 2)];
-			// Vector2 selectedMarkerPos = selected_marker.Prosition;
+			int irandomedarrowMarker = arrowRandomMarker.Next(0, 3);
+			randomArrowStartPosition = (Marker2D)GetNode("ArrowStartPosition/Marker2D" + irandomedarrowMarker.ToString());
 
-			EmitSignal(SignalName.primaryAction);
+			Vector2 direction = (GetGlobalMousePosition() - Position).Normalized();
+
+			Vector2 selectedMarkerPos = randomArrowStartPosition.GlobalPosition;
+
+			EmitSignal(SignalName.primaryAction, direction, selectedMarkerPos);
 		}
 
 		if (Input.IsActionJustPressed("secondary action")){
 			carNode.RotationDegrees += 180;
 			Vector2 direction = (GetGlobalMousePosition() - Position).Normalized();
 
-			EmitSignal(SignalName.secondaryAction, direction);
+			EmitSignal(SignalName.secondaryAction, direction, GrenadeStartPosition.GlobalPosition);
 		}
 	}
 

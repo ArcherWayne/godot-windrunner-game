@@ -1,19 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://87m316yur5qc"]
+[gd_scene load_steps=5 format=3 uid="uid://87m316yur5qc"]
 
 [ext_resource type="Script" path="res://scenes/Arrow/arrow.cs" id="1_05lkg"]
 [ext_resource type="Texture2D" uid="uid://dha0mm4muufpp" path="res://assets/graphics/projectiles/arrow.png" id="1_8vmlw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bjalg"]
+friction = 10.0
+bounce = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4820"]
 radius = 4.0
 height = 70.0
 
-[node name="Arrow" type="Area2D"]
+[node name="Arrow" type="RigidBody2D"]
+mass = 0.6
+inertia = 0.3
+physics_material_override = SubResource("PhysicsMaterial_bjalg")
+gravity_scale = 0.0
+linear_damp = 0.5
 script = ExtResource("1_05lkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
+rotation = 1.5708
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_8vmlw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_y4820")

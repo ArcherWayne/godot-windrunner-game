@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfk6rywwfht85"]
+[gd_scene load_steps=18 format=3 uid="uid://bfk6rywwfht85"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.cs" id="1_uh7sh"]
 [ext_resource type="Texture2D" uid="uid://cl3rwfd21inqg" path="res://assets/graphics/ground/stones.png" id="2_kdb1p"]
@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://cmsbujk267dwd" path="res://scenes/tree/tree.tscn" id="5_kir4q"]
 [ext_resource type="Texture2D" uid="uid://do42il03rlo8l" path="res://assets/graphics/decals/moss/moss_2.png" id="5_nsr1v"]
 [ext_resource type="Texture2D" uid="uid://cmb0d7r4kghu1" path="res://assets/graphics/objects/gate.png" id="5_q7a06"]
+[ext_resource type="PackedScene" uid="uid://c1legd3y0kdc1" path="res://scenes/drone/drone.tscn" id="6_8ck1w"]
 [ext_resource type="Texture2D" uid="uid://b75xvibdu425y" path="res://assets/graphics/decals/moss/moss_3.png" id="6_x1j7h"]
 [ext_resource type="Texture2D" uid="uid://bhou3h3jqtmej" path="res://assets/graphics/decals/moss/moss_5.png" id="7_ed4ps"]
 [ext_resource type="Texture2D" uid="uid://cyw7n505c4ept" path="res://assets/graphics/tilesets/outside_walls.png" id="7_oyvhv"]
 [ext_resource type="Texture2D" uid="uid://ckvey5p8n7jui" path="res://assets/graphics/tilesets/soil.png" id="8_0e3fn"]
-[ext_resource type="PackedScene" uid="uid://80nb0lf7ss58" path="res://scenes/Grenade/grenade.tscn" id="8_aefsh"]
+[ext_resource type="PackedScene" uid="uid://da8lqphxoidei" path="res://scenes/houses/house.tscn" id="13_4kokv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_761il"]
 resource_name = "Walls"
@@ -108,12 +109,22 @@ collision_layer = 16
 position = Vector2(665.5, 76)
 shape = SubResource("RectangleShape2D_v1two")
 
+[node name="House" parent="." instance=ExtResource("13_4kokv")]
+position = Vector2(2802, 3578)
+rotation = -3.14159
+
 [node name="Player" parent="." instance=ExtResource("4_bf335")]
 position = Vector2(377, 416)
+collision_mask = 31
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.2, 1.2)
 position_smoothing_speed = 3.0
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="drone" parent="Enemies" instance=ExtResource("6_8ck1w")]
+position = Vector2(428, 1093)
 
 [node name="tree" parent="." instance=ExtResource("5_kir4q")]
 position = Vector2(1031, 398)
@@ -125,8 +136,6 @@ position = Vector2(-750, 260)
 position = Vector2(653, 211)
 
 [node name="Projectiles" type="Node2D" parent="."]
-
-[node name="Grenade" parent="." instance=ExtResource("8_aefsh")]
 
 [connection signal="primaryAction" from="Player" to="." method="_on_player_primary_action"]
 [connection signal="secondaryAction" from="Player" to="." method="_on_player_secondary_action"]

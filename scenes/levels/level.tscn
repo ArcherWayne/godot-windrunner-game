@@ -1,19 +1,50 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfk6rywwfht85"]
+[gd_scene load_steps=17 format=3 uid="uid://bfk6rywwfht85"]
 
-[ext_resource type="Texture2D" uid="uid://calmb338oh1n" path="res://assets/graphics/car/main.png" id="1_48ob6"]
 [ext_resource type="Script" path="res://scenes/levels/level.cs" id="1_uh7sh"]
 [ext_resource type="Texture2D" uid="uid://cl3rwfd21inqg" path="res://assets/graphics/ground/stones.png" id="2_kdb1p"]
-[ext_resource type="Script" path="res://scenes/levels/Car.cs" id="2_l4pxi"]
-[ext_resource type="Texture2D" uid="uid://d3qbxbik605x" path="res://assets/graphics/decals/dirt_patch.png" id="3_b8wvx"]
 [ext_resource type="PackedScene" uid="uid://b2kjblw5go1mu" path="res://scenes/Player/player.tscn" id="4_bf335"]
 [ext_resource type="Texture2D" uid="uid://bm2qvo7jlav71" path="res://assets/graphics/decals/moss/moss_1.png" id="4_y44pp"]
 [ext_resource type="PackedScene" uid="uid://cmsbujk267dwd" path="res://scenes/tree/tree.tscn" id="5_kir4q"]
 [ext_resource type="Texture2D" uid="uid://do42il03rlo8l" path="res://assets/graphics/decals/moss/moss_2.png" id="5_nsr1v"]
 [ext_resource type="Texture2D" uid="uid://cmb0d7r4kghu1" path="res://assets/graphics/objects/gate.png" id="5_q7a06"]
-[ext_resource type="PackedScene" uid="uid://c1legd3y0kdc1" path="res://scenes/drone/drone.tscn" id="6_8ck1w"]
 [ext_resource type="Texture2D" uid="uid://b75xvibdu425y" path="res://assets/graphics/decals/moss/moss_3.png" id="6_x1j7h"]
 [ext_resource type="Texture2D" uid="uid://bhou3h3jqtmej" path="res://assets/graphics/decals/moss/moss_5.png" id="7_ed4ps"]
+[ext_resource type="Texture2D" uid="uid://cyw7n505c4ept" path="res://assets/graphics/tilesets/outside_walls.png" id="7_oyvhv"]
+[ext_resource type="Texture2D" uid="uid://ckvey5p8n7jui" path="res://assets/graphics/tilesets/soil.png" id="8_0e3fn"]
 [ext_resource type="PackedScene" uid="uid://80nb0lf7ss58" path="res://scenes/Grenade/grenade.tscn" id="8_aefsh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_761il"]
+resource_name = "Walls"
+texture = ExtResource("7_oyvhv")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+2:2/0 = 0
+2:1/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qdrsm"]
+texture = ExtResource("8_0e3fn")
+texture_region_size = Vector2i(390, 390)
+2:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:1/0 = 0
+1:0/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4kirp"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_761il")
+sources/1 = SubResource("TileSetAtlasSource_qdrsm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1two"]
 size = Vector2(343, 148)
@@ -31,11 +62,6 @@ texture = ExtResource("2_kdb1p")
 region_enabled = true
 region_rect = Rect2(-481.055, -216.607, 3505.09, 2620.28)
 
-[node name="Decoration" type="Sprite2D" parent="Ground"]
-position = Vector2(-188, 295)
-scale = Vector2(0.543893, 0.588104)
-texture = ExtResource("3_b8wvx")
-
 [node name="Moss1" type="Sprite2D" parent="Ground"]
 position = Vector2(-217, 900)
 texture = ExtResource("4_y44pp")
@@ -52,12 +78,17 @@ texture = ExtResource("6_x1j7h")
 position = Vector2(614, 866)
 texture = ExtResource("7_ed4ps")
 
-[node name="Car" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.309134)
-texture = ExtResource("1_48ob6")
-script = ExtResource("2_l4pxi")
-
-[node name="drone" parent="." instance=ExtResource("6_8ck1w")]
+[node name="TileMap" type="TileMap" parent="Ground"]
+tile_set = SubResource("TileSet_4kirp")
+format = 2
+layer_0/name = "Soil"
+layer_1/name = "Walls"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(393207, 0, 2, 786423, 0, 2, 1179639, 0, 2, -9, 0, 2, -262153, 0, 2, -589833, 65536, 1, -589826, 65536, 0, -589827, 65536, 0, -655356, 65536, 0, -655350, 65536, 0, -655345, 65536, 0, -655339, 65536, 0, -655335, 65536, 0, -655330, 131072, 1, -262114, 0, 2, 131102, 0, 2, 458782, 0, 2, 786462, 0, 2, 1048606, 0, 2, 1441783, 65536, 2, 1376286, 131072, 2, 1441789, 65536, 0, 1376282, 65536, 0, 1376258, 65536, 0, 1376278, 65536, 0, 1376260, 65536, 0, 1376264, 131072, 0, 1376274, 0, 0, 1638406, 1, 0, 2031622, 1, 1, 2424838, 1, 1, 2818054, 1, 1, 3211270, 1, 2, 3211276, 65537, 2, 2818060, 65537, 1, 2424844, 65537, 1, 2031628, 65537, 1, 1638412, 65537, 0, 1638418, 131073, 0, 3211282, 131073, 2, 2818066, 131073, 1, 2424850, 131073, 1, 2031634, 131073, 1)
 
 [node name="Gate" type="StaticBody2D" parent="."]
 position = Vector2(-20, 63)
@@ -71,6 +102,7 @@ texture = ExtResource("5_q7a06")
 polygon = PackedVector2Array(67, -442, 67, 81, 88, 143, 152, 178, 491, 180, 491, 1, 837, 3, 837, 178, 1186, 175, 1235, 152, 1266, 86, 1261, -446)
 
 [node name="Area2D" type="Area2D" parent="Gate"]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
 position = Vector2(665.5, 76)
@@ -80,7 +112,7 @@ shape = SubResource("RectangleShape2D_v1two")
 position = Vector2(377, 416)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.2, 1.2)
 position_smoothing_speed = 3.0
 
 [node name="tree" parent="." instance=ExtResource("5_kir4q")]

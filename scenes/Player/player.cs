@@ -6,7 +6,7 @@ public partial class player : CharacterBody2D
 	int movementSpeed = 500;
 	Vector2 playerPos = new Vector2();
 
-	bool can_rotate_car = true;
+	// bool can_rotate_car = true;
 
 	private Node2D _arrowStartPosition;
 	private Node2D GrenadeStartPosition;
@@ -26,20 +26,20 @@ public partial class player : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		// input
-		var carNode = GetNode<Sprite2D>("../Car");
-		var rotateCarTimer = GetNode<Timer>("rotateCarTimer");
+		// var carNode = GetNode<Sprite2D>("../Car");
+		// var rotateCarTimer = GetNode<Timer>("rotateCarTimer");
 
 		// rotate player
 		LookAt(GetGlobalMousePosition());
 
 		// arrow shooting input
-		if (Input.IsActionJustPressed("primary action") && can_rotate_car){
+		if (Input.IsActionJustPressed("primary action")){
 			// for the purpose of practise, access car node from this node
 			// and the primary action is to rotate the car 90 degrees clockwsie. 
-			carNode.RotationDegrees += 90;
+			// carNode.RotationDegrees += 90;
 
-			can_rotate_car = false;
-			rotateCarTimer.Start();
+			// can_rotate_car = false;
+			// rotateCarTimer.Start();
 
 			// randomly selected a marker2D for the laser start point. 
 			// emit the position we selected. 
@@ -56,7 +56,7 @@ public partial class player : CharacterBody2D
 		}
 
 		if (Input.IsActionJustPressed("secondary action")){
-			carNode.RotationDegrees += 180;
+			// carNode.RotationDegrees += 180;
 			Vector2 direction = (GetGlobalMousePosition() - Position).Normalized();
 
 			EmitSignal(SignalName.secondaryAction, direction, GrenadeStartPosition.GlobalPosition);
@@ -71,9 +71,5 @@ public partial class player : CharacterBody2D
 		Velocity = direction * movementSpeed;
 
 		MoveAndSlide();
-	}
-
-	private void _on_timer_timeout(){
-		can_rotate_car = true;
 	}
 }

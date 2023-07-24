@@ -10,6 +10,7 @@ public partial class player : CharacterBody2D
 
 	private Node2D _arrowStartPosition;
 	private Node2D GrenadeStartPosition;
+	private GpuParticles2D ArrowParticles;
 	private Marker2D randomArrowStartPosition;
 
 	[Signal]
@@ -20,6 +21,7 @@ public partial class player : CharacterBody2D
 	public override void _Ready(){
 		_arrowStartPosition = (Node2D)GetNode("ArrowStartPosition");
 		GrenadeStartPosition = (Node2D)GetNode("GrenadeStartPosition");
+		ArrowParticles = (GpuParticles2D)GetNode("ArrowParticles/ArrowParticles");
 	}
 
 
@@ -36,10 +38,6 @@ public partial class player : CharacterBody2D
 		if (Input.IsActionJustPressed("primary action")){
 			// for the purpose of practise, access car node from this node
 			// and the primary action is to rotate the car 90 degrees clockwsie. 
-			// carNode.RotationDegrees += 90;
-
-			// can_rotate_car = false;
-			// rotateCarTimer.Start();
 
 			// randomly selected a marker2D for the laser start point. 
 			// emit the position we selected. 
@@ -53,6 +51,11 @@ public partial class player : CharacterBody2D
 			Vector2 selectedMarkerPos = randomArrowStartPosition.GlobalPosition;
 
 			EmitSignal(SignalName.primaryAction, direction, selectedMarkerPos);
+			ArrowParticles.Emitting = true;
+			if (ArrowParticles.Emitting){
+				GD.Print("emitting particles");
+			}
+
 		}
 
 		if (Input.IsActionJustPressed("secondary action")){

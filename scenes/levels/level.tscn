@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfk6rywwfht85"]
+[gd_scene load_steps=19 format=3 uid="uid://bfk6rywwfht85"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.cs" id="1_uh7sh"]
 [ext_resource type="Texture2D" uid="uid://cl3rwfd21inqg" path="res://assets/graphics/ground/stones.png" id="2_kdb1p"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bhou3h3jqtmej" path="res://assets/graphics/decals/moss/moss_5.png" id="7_ed4ps"]
 [ext_resource type="Texture2D" uid="uid://cyw7n505c4ept" path="res://assets/graphics/tilesets/outside_walls.png" id="7_oyvhv"]
 [ext_resource type="Texture2D" uid="uid://ckvey5p8n7jui" path="res://assets/graphics/tilesets/soil.png" id="8_0e3fn"]
+[ext_resource type="PackedScene" uid="uid://cmm012qh0nmwy" path="res://scenes/objects/steam_vent.tscn" id="9_djs0j"]
 [ext_resource type="PackedScene" uid="uid://da8lqphxoidei" path="res://scenes/houses/house.tscn" id="13_4kokv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_761il"]
@@ -90,6 +91,9 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(393207, 0, 2, 786423, 0, 2, 1179639, 0, 2, -9, 0, 2, -262153, 0, 2, -589833, 65536, 1, -589826, 65536, 0, -589827, 65536, 0, -655356, 65536, 0, -655350, 65536, 0, -655345, 65536, 0, -655339, 65536, 0, -655335, 65536, 0, -655330, 131072, 1, -262114, 0, 2, 131102, 0, 2, 458782, 0, 2, 786462, 0, 2, 1048606, 0, 2, 1441783, 65536, 2, 1376286, 131072, 2, 1441789, 65536, 0, 1376282, 65536, 0, 1376258, 65536, 0, 1376278, 65536, 0, 1376260, 65536, 0, 1376264, 131072, 0, 1376274, 0, 0, 1638406, 1, 0, 2031622, 1, 1, 2424838, 1, 1, 2818054, 1, 1, 3211270, 1, 2, 3211276, 65537, 2, 2818060, 65537, 1, 2424844, 65537, 1, 2031628, 65537, 1, 1638412, 65537, 0, 1638418, 131073, 0, 3211282, 131073, 2, 2818066, 131073, 1, 2424850, 131073, 1, 2031634, 131073, 1)
+
+[node name="SteamVent" parent="Ground" instance=ExtResource("9_djs0j")]
+position = Vector2(491, 1621)
 
 [node name="Gate" type="StaticBody2D" parent="."]
 position = Vector2(-20, 63)

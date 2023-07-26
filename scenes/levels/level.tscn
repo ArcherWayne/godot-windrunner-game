@@ -59,7 +59,7 @@ metadata/_edit_horizontal_guides_ = []
 
 [node name="Soil" type="Sprite2D" parent="Ground"]
 texture_repeat = 2
-position = Vector2(711, 623)
+position = Vector2(859, 434)
 texture = ExtResource("2_kdb1p")
 region_enabled = true
 region_rect = Rect2(-481.055, -216.607, 3505.09, 2620.28)
@@ -140,6 +140,9 @@ position = Vector2(-750, 260)
 position = Vector2(653, 211)
 
 [node name="Projectiles" type="Node2D" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.5
 
 [connection signal="primaryAction" from="Player" to="." method="_on_player_primary_action"]
 [connection signal="secondaryAction" from="Player" to="." method="_on_player_secondary_action"]

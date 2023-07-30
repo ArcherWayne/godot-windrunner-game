@@ -9,6 +9,7 @@ public partial class level : Node2D
 
 	private CharacterBody2D _playNode;
 	private Node2D _projectile;
+	private Camera2D CameraNode;
 	public override void _Ready()
 	{
 		// Sprite2D mySprite = (Sprite2D)GetNode("MySprite");
@@ -29,7 +30,8 @@ public partial class level : Node2D
 	}
 
 
-	public void _on_player_primary_action(Vector2 direction, Vector2 position){
+	public void _on_player_primary_action(Vector2 direction, Vector2 position)
+	{
 		RigidBody2D arrow = (RigidBody2D)arrow_scene.Instantiate();
 		arrow.Position = position;
 		arrow.LinearVelocity = direction * 600;
@@ -37,11 +39,27 @@ public partial class level : Node2D
 		_projectile.AddChild(arrow);
 	}
 
-	public void _on_player_secondary_action(Vector2 direction, Vector2 position){
+	public void _on_player_secondary_action(Vector2 direction, Vector2 position)
+	{
 		RigidBody2D grenade = (RigidBody2D)grenade_scene.Instantiate();
 		grenade.Position = position;
 		grenade.LinearVelocity = direction * 500;
 		_projectile.AddChild(grenade);
 	}
 
+	public void _on_house_player_entered()
+	{
+		var tween = GetTree().CreateTween();
+
+		CameraNode = (Camera2D)GetNode("Player/Camera2D");
+		tween.TweenProperty(CameraNode, "zoom", new Vector2(2, 2), 1);
+
+	}
+
+	public void _on_house_player_exited()
+	{
+		Tween tween = GetTree().CreateTween();
+
+		tween.TweenProperty(GetNode("Player/Camera2D"), "zoom", new Vector2((float)1.2, (float)1.2), 1);
+	}
 }

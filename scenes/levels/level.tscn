@@ -60,7 +60,7 @@ metadata/_edit_horizontal_guides_ = []
 
 [node name="Soil" type="Sprite2D" parent="Ground"]
 texture_repeat = 2
-position = Vector2(859, 434)
+position = Vector2(778, 83)
 texture = ExtResource("2_kdb1p")
 region_enabled = true
 region_rect = Rect2(-481.055, -216.607, 3505.09, 2620.28)
@@ -149,5 +149,7 @@ position = Vector2(653, 211)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.5
 
+[connection signal="PlayerEntered" from="House" to="." method="_on_house_player_entered"]
+[connection signal="PlayerExited" from="House" to="." method="_on_house_player_exited"]
 [connection signal="primaryAction" from="Player" to="." method="_on_player_primary_action"]
 [connection signal="secondaryAction" from="Player" to="." method="_on_player_secondary_action"]

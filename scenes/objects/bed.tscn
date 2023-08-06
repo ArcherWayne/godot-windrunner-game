@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm5661bbwvtj0"]
+
+[ext_resource type="PackedScene" uid="uid://dfeq4cigf4tdl" path="res://scenes/objects/item_container.tscn" id="1_qjiiy"]
+[ext_resource type="Texture2D" uid="uid://b54cwvo8rn6lf" path="res://assets/graphics/objects/bed.png" id="2_nmnyy"]
+[ext_resource type="Script" path="res://scenes/objects/bed.cs" id="2_thhx0"]
+
+[node name="Bed" instance=ExtResource("1_qjiiy")]
+script = ExtResource("2_thhx0")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_nmnyy")
+
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

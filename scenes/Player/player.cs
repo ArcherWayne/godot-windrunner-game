@@ -12,13 +12,17 @@ public partial class player : CharacterBody2D
 	private Node2D GrenadeStartPosition;
 	private GpuParticles2D ArrowParticles;
 	private Marker2D randomArrowStartPosition;
+	// Node globals = GetNode<globals>("/root/globals");
+    // private int arrow_amount;
 
-	[Signal]
+    [Signal]
 	public delegate void primaryActionEventHandler(Vector2 direction, Vector2 position);
 	[Signal]
 	public delegate void secondaryActionEventHandler(Vector2 direction, Vector2 position);
 
 	public override void _Ready(){
+		// GD.Print(globals.arrow_amount);
+
 		_arrowStartPosition = (Node2D)GetNode("ArrowStartPosition");
 		GrenadeStartPosition = (Node2D)GetNode("GrenadeStartPosition");
 		ArrowParticles = (GpuParticles2D)GetNode("ArrowParticles/ArrowParticles");
@@ -52,9 +56,10 @@ public partial class player : CharacterBody2D
 
 			EmitSignal(SignalName.primaryAction, direction, selectedMarkerPos);
 			ArrowParticles.Emitting = true;
-			if (ArrowParticles.Emitting){
-				GD.Print("emitting particles");
-			}
+
+			var globals = GetNode<globals>("/root/globals");
+
+			globals.arrow_amount -= 1;
 
 		}
 

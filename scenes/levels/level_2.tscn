@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhlyulej3y6q5"]
+
+[ext_resource type="PackedScene" uid="uid://da8lqphxoidei" path="res://scenes/houses/house.tscn" id="1_q4i8f"]
+[ext_resource type="PackedScene" uid="uid://b2kjblw5go1mu" path="res://scenes/Player/player.tscn" id="2_pxoej"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="House" parent="." instance=ExtResource("1_q4i8f")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Player" parent="." instance=ExtResource("2_pxoej")]

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+
 public partial class level : Node2D
 {
 	// preload a scene
@@ -10,6 +11,7 @@ public partial class level : Node2D
 	private CharacterBody2D _playNode;
 	private Node2D _projectile;
 	private Camera2D CameraNode;
+
 	public override void _Ready()
 	{
 		// Sprite2D mySprite = (Sprite2D)GetNode("MySprite");

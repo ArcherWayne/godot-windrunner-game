@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfk6rywwfht85"]
+[gd_scene load_steps=23 format=3 uid="uid://bfk6rywwfht85"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.cs" id="1_uh7sh"]
 [ext_resource type="Texture2D" uid="uid://cl3rwfd21inqg" path="res://assets/graphics/ground/stones.png" id="2_kdb1p"]
@@ -14,7 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://ckvey5p8n7jui" path="res://assets/graphics/tilesets/soil.png" id="8_0e3fn"]
 [ext_resource type="PackedScene" uid="uid://cmm012qh0nmwy" path="res://scenes/objects/steam_vent.tscn" id="9_djs0j"]
 [ext_resource type="PackedScene" uid="uid://de1jimg0hfj11" path="res://scenes/objects/light_fan_animation.tscn" id="10_p15wa"]
+[ext_resource type="PackedScene" uid="uid://dfeq4cigf4tdl" path="res://scenes/objects/item_container.tscn" id="11_88c33"]
+[ext_resource type="PackedScene" uid="uid://bm5661bbwvtj0" path="res://scenes/objects/bed.tscn" id="12_1j3ja"]
 [ext_resource type="PackedScene" uid="uid://da8lqphxoidei" path="res://scenes/houses/house.tscn" id="13_4kokv"]
+[ext_resource type="PackedScene" uid="uid://rp66h02637sp" path="res://scenes/UserInterface/ui.tscn" id="18_433bs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_761il"]
 resource_name = "Walls"
@@ -52,7 +55,7 @@ sources/1 = SubResource("TileSetAtlasSource_qdrsm")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1two"]
 size = Vector2(343, 148)
 
-[node name="Level" type="Node2D"]
+[node name="Outside" type="Node2D"]
 script = ExtResource("1_uh7sh")
 metadata/_edit_horizontal_guides_ = []
 
@@ -99,6 +102,12 @@ position = Vector2(491, 1621)
 [node name="LightFanAnimation" parent="Ground" instance=ExtResource("10_p15wa")]
 position = Vector2(734, 767)
 autoplay = "default"
+
+[node name="ItemContainer" parent="Ground" instance=ExtResource("11_88c33")]
+position = Vector2(197, 332)
+
+[node name="Bed" parent="Ground" instance=ExtResource("12_1j3ja")]
+position = Vector2(196, 527)
 
 [node name="Gate" type="StaticBody2D" parent="."]
 position = Vector2(-20, 63)
@@ -149,7 +158,10 @@ position = Vector2(653, 211)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.5
 
+[node name="UI" parent="." instance=ExtResource("18_433bs")]
+
 [connection signal="PlayerEntered" from="House" to="." method="_on_house_player_entered"]
 [connection signal="PlayerExited" from="House" to="." method="_on_house_player_exited"]
 [connection signal="primaryAction" from="Player" to="." method="_on_player_primary_action"]
 [connection signal="secondaryAction" from="Player" to="." method="_on_player_secondary_action"]
+[connection signal="mouse_entered" from="tree" to="tree" method="_on_mouse_entered"]

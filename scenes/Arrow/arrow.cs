@@ -13,4 +13,13 @@ public partial class arrow : RigidBody2D
 
 	}
 
+	public void _on_body_entered(Node body){
+		GD.Print("arrow collied");
+		QueueFree();
+	}
+
+	public void _on_timer_timeout(){
+		QueueFree();
+	}
+
 }

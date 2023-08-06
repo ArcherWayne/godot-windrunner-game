@@ -55,4 +55,8 @@ public partial class drone : CharacterBody2D
 
 		MoveAndSlide();
 	}
+
+	public void Hit(){
+		QueueFree();
+	}
 }

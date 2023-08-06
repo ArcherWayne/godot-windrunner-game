@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi8lpf37hd7k7"]
+
+[ext_resource type="PackedScene" uid="uid://bfk6rywwfht85" path="res://scenes/levels/level.tscn" id="1_m748i"]
+[ext_resource type="Script" path="res://Ouside.cs" id="2_3g3p8"]
+
+[node name="Ouside" instance=ExtResource("1_m748i")]
+script = ExtResource("2_3g3p8")

@@ -11,6 +11,5 @@ public partial class globals : Node
 	// }
 
 	public override void _Process(double delta){
-		GD.Print(arrow_amount);
 	}
 }

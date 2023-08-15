@@ -13,7 +13,6 @@ public partial class tree : StaticBody2D
 	}
 
 	private void _on_mouse_entered(){
-		GD.Print("1");
 	}
 
 }

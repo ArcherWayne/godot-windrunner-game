@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bfk6rywwfht85"]
+[gd_scene load_steps=24 format=3 uid="uid://bfk6rywwfht85"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.cs" id="1_uh7sh"]
 [ext_resource type="Texture2D" uid="uid://cl3rwfd21inqg" path="res://assets/graphics/ground/stones.png" id="2_kdb1p"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bm5661bbwvtj0" path="res://scenes/objects/bed.tscn" id="12_1j3ja"]
 [ext_resource type="PackedScene" uid="uid://da8lqphxoidei" path="res://scenes/houses/house.tscn" id="13_4kokv"]
 [ext_resource type="PackedScene" uid="uid://rp66h02637sp" path="res://scenes/UserInterface/ui.tscn" id="18_433bs"]
+[ext_resource type="PackedScene" uid="uid://dp8t6htrdu5lf" path="res://scenes/Items/item.tscn" id="19_rj8u6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_761il"]
 resource_name = "Walls"
@@ -133,7 +134,6 @@ rotation = -3.14159
 
 [node name="Player" parent="." instance=ExtResource("4_bf335")]
 position = Vector2(377, 416)
-collision_mask = 31
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.2, 1.2)
@@ -159,6 +159,9 @@ position = Vector2(653, 211)
 energy = 0.5
 
 [node name="UI" parent="." instance=ExtResource("18_433bs")]
+
+[node name="Item" parent="." instance=ExtResource("19_rj8u6")]
+position = Vector2(604, 396)
 
 [connection signal="PlayerEntered" from="House" to="." method="_on_house_player_entered"]
 [connection signal="PlayerExited" from="House" to="." method="_on_house_player_exited"]

@@ -21,8 +21,6 @@ public partial class player : CharacterBody2D
 	public delegate void secondaryActionEventHandler(Vector2 direction, Vector2 position);
 
 	public override void _Ready(){
-		// GD.Print(globals.arrow_amount);
-
 		_arrowStartPosition = (Node2D)GetNode("ArrowStartPosition");
 		GrenadeStartPosition = (Node2D)GetNode("GrenadeStartPosition");
 		ArrowParticles = (GpuParticles2D)GetNode("ArrowParticles/ArrowParticles");
